@@ -8,7 +8,8 @@ If you are like me and spend a good amount of time in terminal, this is a convin
 ### Steps
 1. Clone the script to your local machine.
 2. Navigate to the script's directory.
-3. Run the provided setup script to create a symbolic link. This allows you to run the script from anywhere in your terminal.
+3. Install dependencies by running `pip install -r requirements.txt`
+4. Run the provided setup script to create a symbolic link. This allows you to run the script from anywhere in your terminal.
 
    ```bash
    chmod +x setup.sh
