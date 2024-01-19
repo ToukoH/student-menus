@@ -1,8 +1,5 @@
-# Kanttiinit Menu Scraper
-
-## Description
+### Description
 If you are like me and spend a good amount of time in terminal, this is a convinient way to get different menus of the student restaurants in Helsinki/Otaniemi area.
-## Installation
 
 ### Prerequisites
 - Python 3.x
@@ -14,5 +11,10 @@ If you are like me and spend a good amount of time in terminal, this is a convin
 3. Run the provided setup script to create a symbolic link. This allows you to run the script from anywhere in your terminal.
 
    ```bash
-   ./setup_symlink.sh
+   chmod +x setup.sh
+   ./setup.sh
+   ```
+### Usage
+Run the script using the command safkat followed by the area number. If no area number is provided, the script defaults to area 1 (Otaniemi).
 
+```safkat -<area_number>```
