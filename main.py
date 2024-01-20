@@ -3,7 +3,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import sys 
+import sys
 
 if len(sys.argv) > 1:
     area_number = sys.argv[1].lstrip('-') 
@@ -27,11 +27,15 @@ for restaurant in restaurants:
     menu_items = restaurant.find_all('li')
     menu = [re.sub(r"\([^)]*\)", "", item.text).strip() for item in menu_items]
 
-    restaurant_menus[restaurant_name] = menu
+    if menu:
+        restaurant_menus[restaurant_name] = menu
 
-for name, menu in restaurant_menus.items():
-    print(f"{name}:")
-    for item in menu:
-        print(f"  - {item}")
-    print()
+if restaurant_menus:
+    for name, menu in restaurant_menus.items():
+        print(f"{name}:")
+        for item in menu:
+            print(f"  - {item}")
+        print()
+else:
+    print("No menus for today in this area")
 
