@@ -6,9 +6,18 @@ import re
 import sys
 
 if len(sys.argv) > 1:
-    area_number = sys.argv[1].lstrip('-') 
+    area_number = int(sys.argv[1].lstrip('-'))
 else:
-    area_number = "1"
+    area_number = 1
+
+areas = {
+    1: "Otaniemi",
+    2: "Helsinki Centrum",
+    3: "Töölö",
+    6: "Kallio",
+    7: "Arabia & Kumpula",
+    8: "Viikki"
+}
 
 url = f"https://folio.kanttiinit.fi/fi/area/{area_number}"
 
@@ -19,7 +28,9 @@ soup = BeautifulSoup(html_content, 'html.parser')
 
 restaurants = soup.find_all('li', class_='restaurant')
 
-restaurant_menus = {}
+menus = {}
+
+print(f"Area selected: {areas.get(area_number)}\n")
 
 for restaurant in restaurants:
     restaurant_name = restaurant.find('h3').text.strip()
@@ -28,10 +39,10 @@ for restaurant in restaurants:
     menu = [re.sub(r"\([^)]*\)", "", item.text).strip() for item in menu_items]
 
     if menu:
-        restaurant_menus[restaurant_name] = menu
+        menus[restaurant_name] = menu
 
-if restaurant_menus:
-    for name, menu in restaurant_menus.items():
+if menus:
+    for name, menu in menus.items():
         print(f"{name}:")
         for item in menu:
             print(f"  - {item}")
